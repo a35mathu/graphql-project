@@ -1,0 +1,3 @@
+graphql.app.$GraphqlEndpointDefinitionClass
+graphql.app.$GraphQLProviderDefinitionClass
+graphql.app.hospitaldata.$PatientDataFetchersDefinitionClass
