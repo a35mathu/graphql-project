@@ -3,11 +3,11 @@ schema {
 }
 
 type Query {
-    patients(firstName:String, lastName: String): [Patient] #id:Int!
+    patients(id: [String], firstName:String, lastName: String): [Patient] #id:Int!
 }
 
 type Patient { # implements Person
-    id: Int! 
+    id: String! 
     firstName: String!
     lastName: String
     nurse: Nurse

@@ -62,7 +62,7 @@ public class GraphQLProvider {
     public RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Query")
-                        .dataFetcher("patients", patientDataFetchers.getPatients())) //getPatients for patients
+                        .dataFetcher("patients", patientDataFetchers.getPatientData())) //getPatients for patients
                 // .type("Query", builder -> builder.dataFetcher("patients", patientDataFetchers.getPatients()))
                 .type(newTypeWiring("Patient")
                         .dataFetcher("nurse", patientDataFetchers.getNurse())) //getNurse for nurses
@@ -73,7 +73,6 @@ public class GraphQLProvider {
     /**
      * @return the graphql
      */
-    //unused
     public GraphQL getGraphql() {
         return graphql;
     }

@@ -9,7 +9,7 @@ public class PersonData {
 
      static Patient patient1 = new Patient(1, "Arushi", "Mathur", 5.2, new Nurse(7, "Leslie", "Blue"));
     //map of patient data --> key is id, value is patient
-    private static Map<Integer, Patient> patientsData = new LinkedHashMap<>();
+    public static Map<Integer, Patient> patientsData = new LinkedHashMap<>();
     static {
         patientsData.put(0, new Patient(0, "Abby", "Baker", 10.0, new Nurse(6, "Jennifer", "Anniston")));
         patientsData.put(1, new Patient(1, "Arushi", "Mathur", 5.2, new Nurse(7, "Leslie", "Blue")));
@@ -20,9 +20,10 @@ public class PersonData {
 
     }
 
-    public static Object getPatientData(String id){
+    public static Patient getPatientData(String id){
         int realID = Integer.parseInt(id);
         if(patientsData.get(realID) != null){
+            System.out.println("GETTING HERE!!!");
             System.out.println(patientsData.get(realID).getFirstName());
             return patientsData.get(realID);
         }
