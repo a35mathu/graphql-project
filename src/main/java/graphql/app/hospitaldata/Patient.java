@@ -5,13 +5,15 @@ public class Patient{
     private int id;
     private String firstName;
     private String lastName;
+    private int age;
     private double timeInHospital;
     private Nurse nurse;
 
-    public Patient(int id, String firstName, String lastName, double timeInHospital, Nurse nurse) {
+    public Patient(int id, String firstName, String lastName, int age, double timeInHospital, Nurse nurse) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
         this.timeInHospital = timeInHospital;
         this.nurse = nurse;
     }
@@ -38,6 +40,14 @@ public class Patient{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public double getTimeInHospital() {

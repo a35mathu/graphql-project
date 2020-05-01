@@ -14,14 +14,13 @@ import com.google.common.base.Charsets;
 
 import graphql.ExecutionInput;
 import graphql.ExecutionResult;
-import graphql.GraphQL;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 
-//graphql endpint
+//graphql endpoint
 @Controller("/graphql")
 public class GraphqlEndpoint {
 
@@ -29,17 +28,17 @@ public class GraphqlEndpoint {
     public HttpResponse<?> graphQlGet(HttpRequest<?> request) throws IOException {
         System.out.println("Welcome to GraphQL :)");
         String queryParam = request.getParameters().get("query");
-        String variablesParam = request.getParameters().get("variables"); //used to allow dynamic parameters to be added to query
+        
+        //used to allow dynamic values to be added to query, unused for demo purposes
+        String variablesParam = request.getParameters().get("variables");
         if (queryParam == null) {
             queryParam = "";
         }
-
         Map<String, Object> variables = new LinkedHashMap<>();
         if (variablesParam != null) {
             variables = objectMapper.readValue(variablesParam, new TypeReference<Map<String, Object>>() {
             });
         }
-
         return executeGraphqlQuery(queryParam, variables); 
     }
 
@@ -49,13 +48,10 @@ public class GraphqlEndpoint {
         ExecutionInput executionInput = ExecutionInput.newExecutionInput()
                 .query(queryParam)
                 // .variables(variables)
-                // .operationName(operationName)
-                // .context(context)
-                .build(); //build the query
+                .build();
 
                 ExecutionResult executionResult = graphQLProvider.getGraphql().execute(executionInput);
-                // Object data = executionResult.getData(); //check result
-                // System.out.println(data); 
+
         return handleNormalResponse(executionResult);
     }
 
@@ -65,11 +61,16 @@ public class GraphqlEndpoint {
     return HttpResponse
         .ok()
         .characterEncoding(Charsets.UTF_8)
-        .contentType(MediaType.APPLICATION_JSON) //graphql media type?
-        .body(body); //body should be a string?
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(body);
 }
 
 private ObjectMapper objectMapper = new ObjectMapper();
 @Inject
 private GraphQLProvider graphQLProvider;
+
 }
+
+
+
+
