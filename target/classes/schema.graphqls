@@ -1,46 +1,55 @@
+
 schema {
     query: Query
 }
 
 type Query {
-    patients(firstName:String, lastName: String): [Patient] #id:Int!
+    patients(id: [String]!, firstName:String, lastName: String): [Patient]
 }
 
-type Patient { # implements Person
-    id: Int! 
-    firstName: String!
+type Patient {
+    id: String 
+    firstName: String
     lastName: String
+    age: Int
     nurse: Nurse
     timeSpendInHospital: Int
 }
 
-type Nurse { #implements Person
-    id:ID!
+type Nurse {
+    id:ID
     firstName: String
     lastName: String
+    patients: [Patient]
 }
 
-# interface Person {
-#     id: ID
-#     firstName: String
-#     lastName: String
-# }
+# EXAMPLE QUERIES BELOW
 
-
-####################
-# example queries below
-
-# patients {
+# patients(id:["1"]) {
 #     firstName
 #     lastName
+#     age
 #     nurse {
 #         firstName
 #         lastName
 #     }
 # }
 
-# patients(firstName: "Arushi") {
+# patients(id:["1"]) {
 #     firstName
 #     lastName
 #     id
+# }
+
+
+# patients(id: ["3", "1", "2", "4"]){
+#     id
+#     firstName
+#     nurse {
+#         firstName
+#         patients {
+#             id
+#             firstName
+#         }
+#     }
 # }
