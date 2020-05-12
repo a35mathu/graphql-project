@@ -28,9 +28,7 @@ public class PatientDataFetchers implements GraphQLQueryResolver{
         BatchLoader<String, Patient> patientsBatchLoader = new BatchLoader<String, Patient>() {
             @Override
             public CompletionStage<List<Patient>> load(List<String> keys) {
-                //
-                // we use supplyAsync() of values here for maximum parellisation
-                //
+             
                 return CompletableFuture.supplyAsync(() -> getPatientsDataViaBatchHTTPApi(keys));         
             }
         };

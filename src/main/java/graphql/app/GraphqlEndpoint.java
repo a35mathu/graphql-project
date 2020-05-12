@@ -29,7 +29,7 @@ public class GraphqlEndpoint {
         System.out.println("Welcome to GraphQL :)");
         String queryParam = request.getParameters().get("query");
         
-        //used to allow dynamic values to be added to query, unused for demo purposes
+        //used to allow dynamic values to be added to query, unused right now
         String variablesParam = request.getParameters().get("variables");
         if (queryParam == null) {
             queryParam = "";
